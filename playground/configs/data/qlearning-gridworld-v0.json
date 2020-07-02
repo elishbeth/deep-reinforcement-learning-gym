@@ -1,0 +1,16 @@
+{
+    "env_name": "GridWorld-2x2-v0",
+    "policy_name": "QlearningPolicy",
+    "policy_params": {
+        "gamma": 0.99
+    },
+    "train_params": {
+        "alpha": 0.5,
+        "alpha_decay": 0.998,
+        "epsilon": 1.0,
+        "epsilon_final": 0.05,
+        "n_episodes": 1000,
+        "annealing_episodes": 800,
+        "log_every_episode": 10
+    }
+}

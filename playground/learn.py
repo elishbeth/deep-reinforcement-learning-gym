@@ -1,6 +1,7 @@
 import os
 import time
 import click
+import gym_EL
 from playground.configs.manager import ConfigManager
 
 
@@ -20,7 +21,6 @@ def run(config_name, model_name=None):
 
     model_name = model_name.lower()
     cfg.start_training(model_name)
-
 
 if __name__ == '__main__':
     run()
