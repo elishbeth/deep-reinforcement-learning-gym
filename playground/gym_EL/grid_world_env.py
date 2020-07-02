@@ -122,17 +122,17 @@ class GridWorldEnv(gym.Env):
          visited and returns a boolean '''
         for i in range(self.nrows):
             for j in range(self.ncols):
-                if self.board[i, j] == 0:
-                    return False  # if any grid has not been visited, not done
-        return True
+                if self.board[i, j] == 2:
+                    return True  # if any grid has been visited twice (hit yourself/ wall)
+        return False
 
     def _determine_reward(self, done):
         ''' This function determines the reward for each 'type' of move. These numbers were determined arbitrarily '''
-        if done:  # done is the only exit
-            return -5
+        if done:  # delay punishment until you cannot (it is enevitable, so collect the most rewards you can before you die)
+            return -((self.nrows * self.ncols) - 1)
         else:
             # return -0.01  # going anywhere will reduce reward.. better hurry up agent!
-            return 1
+            return 1  # going to a new square is great! keep doing it :)
 
     def _next_observation(self):
         ''' This function calulates the N of the grid coordinate i,j and returns it.
@@ -145,7 +145,7 @@ class GridWorldEnv(gym.Env):
 
     def step(self, action: int):
         ''' This function performs the action, increases the number of steps taken, and determines a reward for the step '''
-
+        # self.render()
 
         # if done:
         #     self.reset()
@@ -262,18 +262,18 @@ class GridWorldEnv(gym.Env):
         if self.viewer:
             self.viewer.close()
 
-
-if __name__ == "__main__":
-
-    env = GridWorldEnv(4,3)
-    env.reset()
-    actions = range(env.action_space.n)
-    for i in range(env.max_steps):
-        choice = r.choice(actions)
-        env.step(choice)
-        env.render()
-        time.sleep(.2)
-    env.close()
+#
+# if __name__ == "__main__":
+#
+#     env = GridWorldEnv(4,3)
+#     env.reset()
+#     actions = range(env.action_space.n)
+#     for i in range(env.max_steps):
+#         choice = r.choice(actions)
+#         env.step(choice)
+#         env.render()
+#         time.sleep(.2)
+#     env.close()
 
 
 

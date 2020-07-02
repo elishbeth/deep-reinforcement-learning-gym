@@ -1,5 +1,5 @@
 {
-    "env_name": "GridWorld-2x2-v0",
+    "env_name": "GridWorld-4x3-v0",
     "policy_name": "QlearningPolicy",
     "policy_params": {
         "gamma": 0.99

@@ -112,3 +112,4 @@ class QlearningPolicy(Policy):
 
         data_dict = {'reward': reward_history, 'reward_avg50': reward_averaged}
         plot_learning_curve(self.name, data_dict, xlabel='episode')
+        self.env.render()
